@@ -1,3 +1,6 @@
 site :opscode
 
 metadata
+
+cookbook "dotdeb", github: "homemade/chef-dotdeb"
+cookbook "vsftpd", github: "dangmai/chef-vsftpd", branch: "backport"

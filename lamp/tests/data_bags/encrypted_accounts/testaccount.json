@@ -1,0 +1,33 @@
+{
+  "comment": {
+    "iv": "no4TCvEE/w3kBUD+5Qp55w==\n",
+    "cipher": "aes-256-cbc",
+    "version": 1,
+    "encrypted_data": "c/XoIzQluYawWMcZcSKZWILpJL5r6nqHs0Wpd/rDa/FgCFDBAHFf5z2PHSKw\n2D/m\n"
+  },
+  "username": {
+    "iv": "h1cb8GmpLN/8BE0qc0wKNQ==\n",
+    "cipher": "aes-256-cbc",
+    "version": 1,
+    "encrypted_data": "wC4Gdqr1fRp++u4K09jEW0/08n+aDCKwjmguXfIwEqU=\n"
+  },
+  "id": "test_account",
+  "uid": {
+    "iv": "uOGjCLLOVPVBkrlhmNweDA==\n",
+    "cipher": "aes-256-cbc",
+    "version": 1,
+    "encrypted_data": "7rt1IrsfIkE9IEskqlzlLI8emD9amXePfwM9kJl5VoI=\n"
+  },
+  "virtual_host": {
+    "iv": "P7tZlGb1BQiQllr6VLdbnQ==\n",
+    "cipher": "aes-256-cbc",
+    "version": 1,
+    "encrypted_data": "H5/iDxqKM6rccXl7/KuyGBuDKcUcut8VIK/10+Og+PoXwFWUSjrapiW8wfdz\ndb/2pJcZ8L/Ip5GmkHg11wMS94w9kRTMuzAO5+bAp2x2Z8634pIW/1VvhtRL\nS1WIkjSrNVftxRxfq2Jx+16AgnhAlYKJJk4QRwbAkE4o3QMYEZrMl6YjN3Ac\n2pXjuwzV1Z5kHSnfWzjSTCI0z9vFl7O7wF/6GaytmdDTh0NkThYC/mz04g25\nNw05RqHlglzj79a6BMtvBA3x4CFhx8e+eILALg==\n"
+  },
+  "password": {
+    "iv": "tQWfMnp+5L9AFj5WWn48aQ==\n",
+    "cipher": "aes-256-cbc",
+    "version": 1,
+    "encrypted_data": "6ttCTYep5UsWN6dfn4RFS4ch6yJ1mQ0nB5MuQhN+iQzesDZDd+Tlfgd84nM+\nZRJSPYB90cZq9zIm1g9YA3eCYQ==\n"
+  }
+}
