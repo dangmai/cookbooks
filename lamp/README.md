@@ -3,7 +3,7 @@ Description
 
 This Chef (>= 11.2) cookbook is used to provision a [LAMP
 stack](http://en.wikipedia.org/wiki/LAMP_(software_bundle)) on Ubuntu 12.04 or
-newer releases. It uses PHP-FPM and APC to create a faster and more secure PHP
+newer releases (tested on Ubuntu 12.04, 12.10 and 13.04). It uses PHP-FPM and APC to create a faster and more secure PHP
 environment.
 
 This cookbook is fairly opinionated about how the system is set up, but still
