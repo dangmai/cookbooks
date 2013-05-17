@@ -17,10 +17,10 @@ include_recipe "apache2"
 include_recipe "git"
 include_recipe "nodejs"
 
-parent_dir = node.default[:splitwizard][:dir]
+parent_dir = node[:splitwizard][:dir]
 checkout_dir = "#{parent_dir}/splitwizard"
-user = node.default[:splitwizard][:user]
-group = node.default[:splitwizard][:group]
+user = node[:splitwizard][:user]
+group = node[:splitwizard][:group]
 
 apache_module "rewrite" do
   enable true
@@ -37,13 +37,13 @@ end
 
 # Clone the repository from Github page
 git checkout_dir do
-  repository node.default[:splitwizard][:git]
+  repository node[:splitwizard][:git]
   action :sync
   user user
   group group
 end
 
-npm_package "volo@" + node.default[:splitwizard][:volo]
+npm_package "volo@" + node[:splitwizard][:volo]
 
 # Bower uses the home dir to store some files, but there's no guarantee that
 # the user running this has permission to his/her home dir, so we use the OS'
