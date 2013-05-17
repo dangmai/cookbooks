@@ -23,7 +23,6 @@
 # THE SOFTWARE.
 
 include_recipe "apt"
-include_recipe "vsftpd"
 
 version = node["platform_version"]
 if platform?("ubuntu") && version == "12.04" || version == "12.10"
@@ -44,6 +43,9 @@ if platform?("ubuntu") && version == "12.04" || version == "12.10"
     pin_priority "1001"
   end
 end
+
+# Only install vsftpd after version pinning
+include_recipe "vsftpd"
 
 # Change PAM config for vsftpd, so that users with non-login shell can get FTP
 # access
