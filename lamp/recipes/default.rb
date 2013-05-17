@@ -120,18 +120,20 @@ accounts.each do |entry|
       directory_options vh["directory_options"] || []
     end
 
-    # Testing purpose
-    template "#{host_dir}/index.php" do
-      source "phpinfo.php.erb"
-      owner uid
-      group gid || username
-      mode 00644
-    end
-    template "#{host_dir}/apc.php" do
-      source "apc.php.erb"
-      owner uid
-      group gid || username
-      mode 00644
+    if node.chef_environment == "dev"
+      # Testing purpose
+      template "#{host_dir}/index.php" do
+        source "phpinfo.php.erb"
+        owner uid
+        group gid || username
+        mode 00644
+      end
+      template "#{host_dir}/apc.php" do
+        source "apc.php.erb"
+        owner uid
+        group gid || username
+        mode 00644
+      end
     end
   end
 
