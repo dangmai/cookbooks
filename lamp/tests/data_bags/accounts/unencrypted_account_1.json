@@ -1,0 +1,41 @@
+{
+  "id": "test_account",
+  "comment": "User to run PHP apps",
+  "username": "php_user",
+  "uid": 1010,
+  "virtual_hosts": [
+    {
+      "server_name": "example.com",
+      "server_aliases": [
+        "www.example.com",
+        "blog.example.com"
+      ],
+      "php_fpm": {
+        "max_children": 10
+      }
+    },
+    {
+      "server_name": "example1.com",
+      "server_aliases": [
+        "www.example1.com",
+        "news.example1.com"
+      ]
+    }
+  ],
+  "databases": [
+    {
+      "name": "exampledb"
+    },
+    {
+      "name": "exampledb2",
+      "user": "example-user",
+      "password": "example-password"
+    },
+    {
+      "name": "exampledb3",
+      "user": "example-user",
+      "password": "password_that_will_be_used"
+    }
+  ],
+  "password": "php_user_password"
+}

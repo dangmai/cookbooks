@@ -1,0 +1,14 @@
+{
+  "id": "another_user",
+  "virtual_hosts": [
+    {
+      "server_name": "anotheruser.com"
+    }
+  ],
+  "databases": [
+    {
+      "name": "anotherdb",
+      "password": "anotherdbpassword"
+    }
+  ]
+}
