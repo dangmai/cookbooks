@@ -17,10 +17,10 @@ include_recipe "apache2"
 include_recipe "git"
 include_recipe "nodejs"
 
-parent_dir = node.default[:"personal-website"][:dir]
+parent_dir = node[:"personal-website"][:dir]
 checkout_dir = "#{parent_dir}/website"
-user = node.default[:"personal-website"][:user]
-group = node.default[:"personal-website"][:group]
+user = node[:"personal-website"][:user]
+group = node[:"personal-website"][:group]
 
 apache_module "rewrite" do
   enable true
@@ -37,13 +37,13 @@ end
 
 # Clone the repository from Github page
 git checkout_dir do
-  repository node.default[:"personal-website"][:git]
+  repository node[:"personal-website"][:git]
   action :sync
   user user
   group group
 end
 
-npm_package "bower@" + node.default[:"personal-website"][:bower]
+npm_package "bower@" + node[:"personal-website"][:bower]
 
 # Bower uses the home dir to store some files, but there's no guarantee that
 # the user running this has permission to his/her home dir, so we use the OS'
