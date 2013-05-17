@@ -119,22 +119,6 @@ accounts.each do |entry|
       allow_override vh["allow_override"]
       directory_options vh["directory_options"] || []
     end
-
-    if node.chef_environment == "dev"
-      # Testing purpose
-      template "#{host_dir}/index.php" do
-        source "phpinfo.php.erb"
-        owner uid
-        group gid || username
-        mode 00644
-      end
-      template "#{host_dir}/apc.php" do
-        source "apc.php.erb"
-        owner uid
-        group gid || username
-        mode 00644
-      end
-    end
   end
 
   mysql_connection_info = {
