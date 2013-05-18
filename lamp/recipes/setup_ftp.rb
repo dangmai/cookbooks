@@ -24,11 +24,11 @@
 
 include_recipe "apt"
 
-version = node["platform_version"]
+version = node[:platform_version]
 if platform?("ubuntu") && version == "12.04" || version == "12.10"
   # Pin vsftpd 3 from Raring, because it allows for writing to chrooted home dir
   file "/etc/apt/apt.conf.d/99lamp" do
-    content "APT::Default-Release \"#{node["lsb"]["codename"]}\";"
+    content "APT::Default-Release \"#{node[:lsb][:codename]}\";"
     mode "644"
   end
 

@@ -124,7 +124,7 @@ accounts.each do |entry|
   mysql_connection_info = {
     :host => "localhost",
     :username => "root",
-    :password => node["mysql"]["server_root_password"]
+    :password => node[:mysql][:server_root_password]
   }
   account['databases'].each do |db|
     Chef::Application.fatal!("Parameter name is required for a database") unless db["name"]
