@@ -1,0 +1,15 @@
+{
+    "id": "common",
+    "packages": {
+        "common": ["calibre"],
+        "common_except_windows": ["zsh", "htop"],
+        "family_mac_os_x": ["zookeeper"],
+        "windows": ["notepadplusplus"],
+        "family_debian": ["beets", "cowsay"],
+        "ubuntu": ["-cowsay", "-zsh"],
+        "centos": ["apache2"],
+        "python": ["ash"],
+        "ruby": ["thor"],
+        "nodejs": ["escape-latex"]
+    }
+}

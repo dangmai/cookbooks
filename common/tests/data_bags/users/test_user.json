@@ -1,0 +1,20 @@
+{
+    "id": "test_user",
+    "username": "test_user",
+    "password": "password_in_plain_text",
+    "shell": "/bin/zsh",
+    "ssh_keys": [
+        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8zgr1DbiV7nps7937FIvfzeUJgNYgJr2cGNMh1LziOBxgWzujdB6+JjMo817w7NZsBymdOgYP8bptn5cqAUVjVh4rmHd8BEqC0Pxq27uLT2YHh8aBmYRle0PQkshoY5yVS4vKpMWCJmuFiTZnY88VM7KfZmJYTuFwf2BEVTdQAGY+eJWAM+0EnFBZkQeAC2XqJ6UU/iAYSO20IFYaaJnpnwCTKZBjA3J2VLeF7nTtfIYMDdKP5ItSYrf0ZIB6JL+pdp1ojAv0CRSRNyk3An3QIwTuMfbvo5fNESRf1Cx+zgw6/WDto5AtxKUlHcjSEoZVdNs8yyQyLKMNJoP9nMfZ test@device1",
+        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDqK8AhzWZN8bzRBCpu3oLEgl96V37Lp8Pjw/wdl8yKgSBxGGFSb3vc8Zq7DPloLpoSMJbPAHyHhMw/UziWEVy1+2WflBPQ/9mYBqJM/74E19PiIst5MIItR4kS6bCNi56CI7uU1Sp0Kd6m+w52GDy99SzjODxbMrZnFdkKvlaOjNN9CkTLJIz5z0RfO2LcABS+2ClVgrKHqjbFcUZF7hwg00YZQqIXSSS1tb4Uckkrxypa6YYW/7K19jcX7vNEWvaxxiL4PLzasjqo5P44XYY2/L1fTMpgQCIFt4VSI23wf7p3uTpFEeVXs0upIr33+Z3ldU/0EBbnIuD4rrBK/9ZT test@device2"
+    ],
+    "execute": [{
+        "location": "https://github.com/dangmai/oh-my-zsh.git",
+        "commands": ["tools/install.sh", "cd .. && rm -rf oh-my-zsh"],
+        "path": "oh-my-zsh"
+    }, {
+        "location": "https://github.com/dangmai/dotfiles.git",
+        "reference": "master",
+        "path": ".dotfiles",
+        "commands": ["yes O | bash script/bootstrap"]
+    }]
+}
