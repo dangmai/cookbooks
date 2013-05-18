@@ -74,7 +74,7 @@ Vagrant.configure("2") do |config|
     }
 
     chef.run_list = [
-        "recipe[common::users]"
+        "recipe[common::default]"
     ]
 
     chef.data_bags_path = 'tests/data_bags'

@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: users
+# Cookbook Name:: common
 # Recipe:: users
 #
 # Copyright (C) 2013 Dang Mai
