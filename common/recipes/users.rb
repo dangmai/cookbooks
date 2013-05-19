@@ -56,6 +56,13 @@ users.each do |entry|
     supports :manage_home => true
   end
 
+  # Add user to sudoers
+  group "sudo" do
+    members [username]
+    append true
+    action :modify
+  end
+
   # Generate authorized keys for user
   if user["ssh_keys"]
     directory "#{home_dir}/.ssh" do
