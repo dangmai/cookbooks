@@ -23,6 +23,5 @@
 # THE SOFTWARE.
 
 node.override[:openssh][:server][:permit_root_login] = "no"
-node.override[:openssh][:server][:port] = "2222"
 
 include_recipe "openssh"
