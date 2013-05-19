@@ -30,6 +30,18 @@ if platform?("debian")
 end
 
 include_recipe "apache2"
+# For Ubuntu, make sure that multiverse repo is turned on, or mod_fastcgi won't
+# install
+if platform?("ubuntu")
+  version = node[:lsb][:codename]
+  [version, "#{version}-updates"].each do |dist|
+    apt_repository "#{dist}-multiverse" do
+      uri "http://archive.ubuntu.com/ubuntu"
+      distribution dist
+      components ["multiverse"]
+    end
+  end
+end
 include_recipe "apache2::mod_fastcgi"
 include_recipe "database::mysql"
 include_recipe "jolicode-php"
