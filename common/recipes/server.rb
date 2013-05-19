@@ -24,4 +24,6 @@
 
 node.override[:openssh][:server][:permit_root_login] = "no"
 
+include_recipe "apt"
 include_recipe "openssh"
+include_recipe "unattended-upgrades"

@@ -4,7 +4,7 @@ maintainer_email "contact@dangmai.net"
 license          "MIT"
 description      "Installs/Configures common stuff across my systems"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "0.1.2"
+version          "0.1.3"
 
 depends "apt"
 depends "chocolatey"
@@ -16,3 +16,4 @@ depends "openssh"
 depends "pacman"
 depends "python"
 depends "rvm"
+depends "unattended-upgrades"
