@@ -23,4 +23,6 @@
 # THE SOFTWARE.
 
 include_recipe "common::install"
-include_recipe "common::users"
+unless platform?("windows")
+  include_recipe "common::users"
+end
