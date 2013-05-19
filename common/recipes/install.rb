@@ -46,12 +46,12 @@ to_install = []
 packages = bag_item["packages"]
 # Figure out which packages are needed
 # Steps: common -> common_except_windows -> family -> platform -> negation
-to_install = to_install.concat(packages["common"])
+to_install = to_install.concat(packages["common"]) if packages["common"]
 unless platform == "windows"
-  to_install = to_install.concat(packages["common_except_windows"])
+  to_install = to_install.concat(packages["common_except_windows"]) if packages["common_except_windows"]
 end
-to_install = to_install.concat(packages["family_#{family}"])
-to_install = to_install.concat(packages[platform])
+to_install = to_install.concat(packages["family_#{family}"]) if packages["family_#{family}"]
+to_install = to_install.concat(packages[platform]) if packages[platform]
 to_install.each_with_index do |item, index|
   if item.start_with?("-")
     r = item[1, item.length() - 1]
@@ -62,7 +62,7 @@ to_install.each_with_index do |item, index|
     end
   end
 end
-log to_install
+
 to_install.each do |item|
   if platform == "windows"
     chocolatey item if item
