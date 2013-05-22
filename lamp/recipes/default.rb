@@ -47,6 +47,7 @@ include_recipe "database::mysql"
 include_recipe "jolicode-php"
 include_recipe "jolicode-php::ext-fpm"
 include_recipe "jolicode-php::ext-apc"
+include_recipe "jolicode-php::ext-mysql"
 include_recipe "mysql::server"
 include_recipe "lamp::setup_ftp"
 
