@@ -51,6 +51,15 @@ include_recipe "jolicode-php::ext-mysql"
 include_recipe "mysql::server"
 include_recipe "lamp::setup_ftp"
 
+# By default, jolicode-php FPM recipe uses /var/lib/php/session to store all
+# session info. On an Ubuntu 12.04 machine, that dir does not exist, so we need
+# to create it here.
+directory '/var/lib/php/session' do
+  action :create
+  recursive true
+  mode 0777
+end
+
 # Install unix-crypt to encrypt UNIX password
 chef_gem "unix-crypt"
 require 'unix_crypt'
