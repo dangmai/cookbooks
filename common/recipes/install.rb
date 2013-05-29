@@ -26,6 +26,20 @@ platform = node[:platform]
 # Tiny exception of OS X server here
 family = platform?("mac_os_x_server") ? "mac_os_x" : node[:platform_family]
 
+# Homebrew workaround for multiple users
+if family == "mac_os_x"
+  user "brew" do
+    group "admin"
+    system true
+  end
+  directory "/usr/local" do
+    owner "brew"
+    group "admin"
+    mode "775"  # allows for group write
+  end
+  node.override["homebrew"]["run_as"] = "brew"
+end
+
 # Install and update package managers' cache if necessary
 case family
 when "debian"
@@ -61,20 +75,6 @@ to_install.each_with_index do |item, index|
       to_install[index] = nil
     end
   end
-end
-
-# Homebrew workaround for multiple users
-if family == "mac_os_x"
-  user "brew" do
-    group "admin"
-    system true
-  end
-  directory "/usr/local" do
-    owner "brew"
-    group "admin"
-    mode "775"  # allows for group write
-  end
-  node.override["homebrew"]["run_as"] = "brew"
 end
 
 to_install.each do |item|
