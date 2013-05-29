@@ -28,6 +28,7 @@ include_recipe "git"
 chef_gem "unix-crypt"
 require 'unix_crypt'
 
+homebrew_users = []
 users = data_bag(node[:common][:users_data_bag])
 users.each do |entry|
   if node[:common][:encrypted_users_data_bag]
@@ -36,7 +37,6 @@ users.each do |entry|
     user = data_bag_item(node[:common][:users_data_bag], entry)
   end
 
-  shell = user["shell"]
   username = user["username"]
   password = user["password"] ? UnixCrypt::SHA256.build(user["password"]) : nil
   if platform?("windows")
@@ -50,12 +50,15 @@ users.each do |entry|
   user username do
     home home_dir
     password password
-    shell shell if shell
     supports :manage_home => true
   end
 
   # Add user to sudoers
-  group "sudo" do
+  sudo_group = "sudo"
+  if platform?("mac_os_x") || platform?("mac_os_x_server")
+    sudo_group = "admin"
+  end
+  group sudo_group do
     members [username]
     append true
     action :modify
