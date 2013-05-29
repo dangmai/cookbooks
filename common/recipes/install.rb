@@ -28,16 +28,14 @@ family = platform?("mac_os_x_server") ? "mac_os_x" : node[:platform_family]
 
 # Homebrew workaround for multiple users
 if family == "mac_os_x"
-  user "brew" do
+  user node["homebrew"]["run_as"] do
     group "admin"
-    system true
   end
   directory "/usr/local" do
-    owner "brew"
+    owner node["homebrew"]["run_as"]
     group "admin"
     mode "775"  # allows for group write
   end
-  node.override["homebrew"]["run_as"] = "brew"
 end
 
 # Install and update package managers' cache if necessary

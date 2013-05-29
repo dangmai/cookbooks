@@ -28,7 +28,6 @@ include_recipe "git"
 chef_gem "unix-crypt"
 require 'unix_crypt'
 
-homebrew_users = []
 users = data_bag(node[:common][:users_data_bag])
 users.each do |entry|
   if node[:common][:encrypted_users_data_bag]
