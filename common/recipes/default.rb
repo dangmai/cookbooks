@@ -22,7 +22,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-include_recipe "common::install"
 unless platform?("windows")
   include_recipe "common::users"
 end
+include_recipe "common::install"
