@@ -25,6 +25,20 @@
 platform = node[:platform]
 # Tiny exception of OS X server here
 family = platform?("mac_os_x_server") ? "mac_os_x" : node[:platform_family]
+# I use Homebrew for OS X, so here I need to figure out which users to install
+# Homebrew programs in.
+users = data_bag(node[:common][:users_data_bag])
+homebrew_users = []
+users.each do |entry|
+  if node[:common][:encrypted_users_data_bag]
+    user = Chef::EncryptedDataBagItem.load(node[:common][:users_data_bag], entry)
+  else
+    user = data_bag_item(node[:common][:users_data_bag], entry)
+  end
+  if user["homebrew"]
+    homebrew_users.push(user["username"])
+  end
+end
 
 # Install and update package managers' cache if necessary
 case family
@@ -63,10 +77,24 @@ to_install.each_with_index do |item, index|
   end
 end
 
+# Homebrew workaround for multiple users
+if family == "mac_os_x" && homebrew_users.size() > 0
+  group "brew" do
+    append :true
+    members homebrew_users
+  end
+  directory "/usr/local" do
+    owner homebrew_users[0]
+    group "brew"
+    mode "775"  # allows for group write
+  end
+  node.override["homebrew"]["run_as"] = homebrew_users[0]
+end
+
 to_install.each do |item|
   if platform == "windows"
     chocolatey item if item
-  else
+  elsif (family == "mac_os_x" && homebrew_users.size() > 0) || (family != "mac_os_x")
     package item if item
   end
 end
