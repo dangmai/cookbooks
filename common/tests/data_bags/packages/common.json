@@ -9,7 +9,6 @@
         "ubuntu": ["-cowsay", "-zsh"],
         "centos": ["apache2"],
         "python": ["ash"],
-        "ruby": ["thor"],
         "nodejs": ["escape-latex"]
     }
 }

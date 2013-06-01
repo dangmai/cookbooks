@@ -95,16 +95,6 @@ if packages["python"]
   end
 end
 
-if packages["ruby"]
-  # Install rvm and the ruby packages as global gems in the default rvm
-  gems_to_install = []
-  packages["ruby"].each do |ruby_package|
-    gems_to_install.push({ "name" => ruby_package })
-  end
-  node.override['rvm']['global_gems'] = gems_to_install
-  include_recipe "rvm::system"
-end
-
 if packages["nodejs"]
   unless family=="mac_os_x"
     node.override[:nodejs][:install_method] = 'package'
