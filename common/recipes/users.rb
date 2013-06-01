@@ -105,7 +105,11 @@ users.each do |entry|
 
     if e["commands"]
       e["commands"].each do |cmd|
-        execute "su -l -c 'HOME=#{home_dir} && cd #{path} && #{cmd}' '#{username}'"
+        if platform?("mac_os_x") || platform?("mac_os_x_server")
+          execute "su '#{username}' -l -c 'HOME=#{home_dir} && cd #{path} && #{cmd}'"
+        else
+          execute "su -l -c 'HOME=#{home_dir} && cd #{path} && #{cmd}' '#{username}'"
+        end
       end
     end
   end
