@@ -66,18 +66,19 @@ users.each do |entry|
     action :modify
   end
 
+  user_group = username unless platform?("mac_os_x") || platform?("mac_os_x_server") else "staff"
   # Generate authorized keys for user
   if user["ssh_keys"]
     directory "#{home_dir}/.ssh" do
       owner username
-      group username
+      group user_group
       mode "0700"
     end
 
     template "#{home_dir}/.ssh/authorized_keys" do
       source "authorized_keys.erb"
       owner username
-      group username
+      group user_group
       mode "0600"
       variables :ssh_keys => user['ssh_keys']
     end
@@ -89,7 +90,7 @@ users.each do |entry|
 
     directory path do
       user username
-      group username
+      group user_group
       recursive true
       action :create
     end
@@ -98,7 +99,7 @@ users.each do |entry|
       repository e["location"]
       reference e["reference"] || "master"
       user username
-      group username
+      group user_group
       action :sync
      end
 
