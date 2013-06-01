@@ -66,7 +66,7 @@ users.each do |entry|
     action :modify
   end
 
-  user_group = username unless platform?("mac_os_x") || platform?("mac_os_x_server") else "staff"
+  user_group = platform?("mac_os_x") || platform?("mac_os_x_server") ? "staff" : username
   # Generate authorized keys for user
   if user["ssh_keys"]
     directory "#{home_dir}/.ssh" do
