@@ -48,7 +48,10 @@ users.each do |entry|
 
   user username do
     home home_dir
-    password password
+    # Currently password hashing is broken on OS X
+    # Assumption is that we run this as our desired user on OS X anyway, so
+    # this shouldn't be a big deal
+    password password unless platform?("mac_os_x_server") || platform?("mac_os_x")
     supports :manage_home => true
   end
 
