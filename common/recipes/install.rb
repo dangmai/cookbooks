@@ -28,11 +28,11 @@ family = platform?("mac_os_x_server") ? "mac_os_x" : node[:platform_family]
 
 # Homebrew workaround for multiple users
 if family == "mac_os_x"
-  user node["homebrew"]["run_as"] do
+  user node[:homebrew][:run_as] do
     group "admin"
   end
   directory "/usr/local" do
-    owner node["homebrew"]["run_as"]
+    owner node[:homebrew][:run_as]
     group "admin"
     mode "775"  # allows for group write
   end
@@ -85,7 +85,11 @@ end
 
 # Special packages
 if packages["python"]
-  include_recipe "python"
+  unless family=="mac_os_x"
+    include_recipe "python"
+  else
+    package "python"  # As homebrew does not have python-dev (in python cookbook)
+  end
   packages["python"].each do |python_package|
     python_pip python_package
   end
@@ -102,8 +106,12 @@ if packages["ruby"]
 end
 
 if packages["nodejs"]
-  node.override[:nodejs][:'install_method'] = 'package'
-  include_recipe "nodejs"
+  unless family=="mac_os_x"
+    node.override[:nodejs][:install_method] = 'package'
+    include_recipe "nodejs"
+  else
+    package "node"
+  end
   packages["nodejs"].each do |node_package|
     npm_package node_package
   end
